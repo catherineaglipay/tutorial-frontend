@@ -1,0 +1,57 @@
+<p>
+    test works!
+</p>
+
+<button type="button" class="btn btn-danger" (click)="testSwal()">TEST SWAL</button>
+<button type="button" class="btn btn-light pull-right" (click)="addStudentModal.show()">ADD STUDENT</button>
+
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tr *ngFor="let data_student of student_list">
+                <td>{{ data_student.key }}</td>
+                <td>{{ data_student.fname }}</td>
+                <td>{{ data_student.mname }}</td>
+                <td>{{ data_student.lname }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<!-- Add Student Modal-->
+<div class="modal fade" bsModal #addStudentModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name" [config]="{ ignoreBackdropClick: true }">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content" style="width: 70%; margin: 0 15%">
+            <div class="modal-header">
+                <h4 class="modal-title">ADD STUDENT</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>First Name<span class="c-red">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="modal_first_name" placeholder="" maxlength="40">
+                        <i class="form-group__bar"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>Middle Name<span class="c-red">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="modal_middle_name" placeholder="" maxlength="40">
+                        <i class="form-group__bar"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name<span class="c-red">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="modal_last_name" placeholder="" maxlength="40">
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-button">
+                    <button type="button" class="btn btn-light btn-sm btn-shadow pull-right" (click)="addStudentModal.hide()">CLOSE</button>
+                    <button type="button" class="btn btn-danger btn-sm btn-shadow m-r-20 pull-right" (click)="addStudent()">SAVE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
