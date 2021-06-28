@@ -3,13 +3,30 @@
 </p>
 
 <button type="button" class="btn btn-danger" (click)="testSwal()">TEST SWAL</button>
-<button type="button" class="btn btn-light pull-right" (click)="addStudentModal.show()">ADD STUDENT</button>
+<button type="button" class="btn btn-primary pull-right" (click)="addStudentModal.show()">ADD STUDENT</button>
 
 
 <div class="card">
     <div class="card-body">
         <table class="table table-bordered">
             <tr *ngFor="let data_student of student_list">
+                <td style="width: 5%;">
+                    <!-- <a (click)="editStudentModal.show()"> -->
+                        <i  class="zmdi zmdi-edit zmdi-hc-fw cursor-pointer" 
+                            style="font-size: 1.5rem"
+                            title="Edit"
+                            (click)="editStudent(data_student); editStudentModal.show()"
+                        ></i>
+                    <!-- </a> -->
+                </td>
+                <td style="width: 5%;">
+                    <a (click)="deleteStudent(data_student.key)">
+                        <i  class="zmdi zmdi-delete zmdi-hc-fw" 
+                            style="font-size: 1.5rem"
+                            title="Delete"
+                        ></i>
+                    </a>
+                </td>
                 <td>{{ data_student.key }}</td>
                 <td>{{ data_student.fname }}</td>
                 <td>{{ data_student.mname }}</td>
@@ -50,6 +67,43 @@
                 <div class="modal-button">
                     <button type="button" class="btn btn-light btn-sm btn-shadow pull-right" (click)="addStudentModal.hide()">CLOSE</button>
                     <button type="button" class="btn btn-danger btn-sm btn-shadow m-r-20 pull-right" (click)="addStudent()">SAVE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit Student Modal-->
+<div class="modal fade" bsModal #editStudentModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name" [config]="{ ignoreBackdropClick: true }">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content" style="width: 70%; margin: 0 15%">
+            <div class="modal-header">
+                <h4 class="modal-title">EDIT STUDENT</h4>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>First Name<span class="c-red">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="modal_edit_first_name" placeholder="" maxlength="40">
+                        <i class="form-group__bar"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>Middle Name<span class="c-red">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="modal_edit_middle_name" placeholder="" maxlength="40">
+                        <i class="form-group__bar"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name<span class="c-red">*</span></label>
+                        <input type="text" class="form-control" [(ngModel)]="modal_edit_last_name" placeholder="" maxlength="40">
+                        <i class="form-group__bar"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-button">
+                    <button type="button" class="btn btn-light btn-sm btn-shadow pull-right" (click)="editStudentModal.hide()">CLOSE</button>
+                    <button type="button" class="btn btn-danger btn-sm btn-shadow m-r-20 pull-right" (click)="updateStudent()">UPDATE</button>
                 </div>
             </div>
         </div>
